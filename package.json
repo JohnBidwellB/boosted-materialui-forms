@@ -30,6 +30,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-uglify": "^6.0.4",
     "webpack": "^4.43.0"
   },
   "peerDependencies": {

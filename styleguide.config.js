@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   webpackConfig: {
     module: {
@@ -10,4 +12,9 @@ module.exports = {
       ],
     },
   },
+  title: "Boosted MaterialUI form fields",
+  styleguideDir: "dist-docs",
+  moduleAliases: {
+    "boosted-materialui-forms": path.resolve(__dirname, "src")
+  }
 };

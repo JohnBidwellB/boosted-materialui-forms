@@ -14,6 +14,7 @@ export default [
     output: {
       file: packageJSON.main,
       format: "cjs",
+      sourcemap: true,
     },
     plugins: [
       babel({

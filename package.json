@@ -1,16 +1,23 @@
 {
   "name": "boosted-materialui-forms",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MaterialUI Textfields boosted with validations and error management ",
   "main": "lib/index.js",
   "scripts": {
     "start": "styleguidist server",
     "test": "jest",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "rm -rf lib && npm run build",
+    "postbuild": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
+    "docs:build": "styleguidist build"
   },
+  "files": [
+    "/lib"
+  ],
   "keywords": [
     "materialui"
   ],
+  "git": "https://github.com/JohnBidwellB/boosted-materialui-forms",
   "author": "John Bidwell",
   "license": "ISC",
   "devDependencies": {

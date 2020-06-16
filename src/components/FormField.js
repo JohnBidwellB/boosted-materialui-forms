@@ -9,9 +9,14 @@ import { TextField } from "@material-ui/core";
 //   ${shape}
 // `;
 
-export default function FormField({ label }) {
+export default function FormField({ label, variant }) {
   // return <Wrapper><TextField variant="outlined" label={label} /></Wrapper>;
-  return <TextField variant="outlined" label={label} />;
+  return (
+    <TextField
+      variant={variant ? variant : "outlined"}
+      label={label ? label : "Default"}
+    />
+  );
 }
 
 // export default Button;

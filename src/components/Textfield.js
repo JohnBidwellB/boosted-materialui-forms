@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { TextField } from "@material-ui/core";
+import { checkValidations } from "../helpers/form.helpers";
 
 const defaultConfig = {
   //   autoComplete: "",
@@ -8,10 +9,10 @@ const defaultConfig = {
   color: "primary",
   //   defaultValue: "",
   //   disabled: false,
-    error: false,
+  error: false,
   //   FormHelperTextProps: null,
   //   fullWidth: false,
-  //   helperText: null,
+  helperText: null,
   id: "field",
   //   InputLabelProps: null,
   //   inputProps: null,
@@ -32,8 +33,44 @@ const defaultConfig = {
   variant: "outlined",
 };
 
-const Textfield = ({ config }) => {
-  return <TextField {...defaultConfig} {...config} />;
+const Textfield = ({ config, validations }) => {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const updateForm = (event) => {
+    event.preventDefault();
+    setValue(event.target.value);
+  };
+
+  // Run validations
+  useEffect(() => {
+    if (validations) {
+      const { hasError, validationMessage } = checkValidations(
+        value,
+        validations
+      );
+      if (hasError) {
+        setError(true);
+        setMessage(validationMessage);
+      } else {
+        setError(false);
+      }
+    }
+  }, [value]);
+
+  return (
+    <TextField
+      {...defaultConfig}
+      {...config}
+      error={error}
+      value={value}
+      onChange={updateForm}
+      helperText={
+        error ? message : config?.helperText ? config.helperText : null
+      }
+    />
+  );
 };
 
 export default Textfield;

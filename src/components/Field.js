@@ -1,5 +1,4 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
 import Textfield from "./Textfield";
 
 // const showError = (data) => {
@@ -9,17 +8,23 @@ import Textfield from "./Textfield";
 //   ) : null;
 // };
 
-const TemplateToRender = ({ element, config }) => {
+const TemplateToRender = ({ element, config, validations }) => {
   switch (element) {
     case "input":
-      return <Textfield config={config} />;
+      return <Textfield config={config} validations={validations} />;
     default:
-      return <Textfield config={config} />;
+      return <Textfield config={config} validations={validations} />;
   }
 };
 
-const Field = ({ element, config }) => {
-  return <TemplateToRender element={element} config={config} />;
+const Field = ({ element, config, validations }) => {
+  return (
+    <TemplateToRender
+      element={element}
+      config={config}
+      validations={validations}
+    />
+  );
 };
 
 export default Field;

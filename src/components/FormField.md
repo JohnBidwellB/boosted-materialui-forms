@@ -47,3 +47,14 @@ import { FormField } from 'boosted-materialui-forms';
     <FormField config={{ type: 'number', label: 'number' }} />{"   "}
 </>
 ```
+
+Validations
+
+```jsx
+import { FormField } from 'boosted-materialui-forms';
+
+<>
+<FormField config={{ label: 'Required validation' }} validations={{ required: true }}/> {"   "}
+<FormField config={{ label: 'Required validation' }} validations={{ required: { value: true, message: 'Required field'} }}/> {"   "}
+</>
+```

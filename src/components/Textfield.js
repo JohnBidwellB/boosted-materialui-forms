@@ -8,7 +8,7 @@ const defaultConfig = {
   color: "primary",
   //   defaultValue: "",
   //   disabled: false,
-  //   error: false,
+    error: false,
   //   FormHelperTextProps: null,
   //   fullWidth: false,
   //   helperText: null,
@@ -33,7 +33,6 @@ const defaultConfig = {
 };
 
 const Textfield = ({ config }) => {
-  console.log("Hola mundo", defaultConfig);
   return <TextField {...defaultConfig} {...config} />;
 };
 

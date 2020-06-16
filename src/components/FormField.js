@@ -1,5 +1,6 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+// import { TextField } from "@material-ui/core";
+import Field from "./Field";
 // import styled from "@emotion/styled";
 // import { font, primaryColors, shape } from "config/styles";
 
@@ -9,13 +10,22 @@ import { TextField } from "@material-ui/core";
 //   ${shape}
 // `;
 
-export default function FormField({ label, variant }) {
+export default function FormField({
+  element = "input",
+  onchange,
+  value,
+  config = null,
+  validations = null,
+  formatters = null,
+}) {
   // return <Wrapper><TextField variant="outlined" label={label} /></Wrapper>;
   return (
-    <TextField
-      variant={variant ? variant : "outlined"}
-      label={label ? label : "Default"}
-    />
+    <Field element={element} config={config} />
+    // <TextField
+
+    //   variant={variant ? variant : "outlined"}
+    //   label={label ? label : "Default"}
+    // />
   );
 }
 

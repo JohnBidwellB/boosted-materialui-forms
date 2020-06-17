@@ -62,3 +62,13 @@ import { FormField } from 'boosted-materialui-forms';
 <FormField config={{ label: 'Chilean rut validation' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }}/> {"  "}
 </>
 ```
+
+Formatters
+
+```jsx
+import { FormField } from 'boosted-materialui-forms';
+
+<>
+<FormField config={{ label: 'Chilean rut formatter ' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> {"  "}
+</>
+```

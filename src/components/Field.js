@@ -8,21 +8,34 @@ import Textfield from "./Textfield";
 //   ) : null;
 // };
 
-const TemplateToRender = ({ element, config, validations }) => {
+const TemplateToRender = ({ element, config, validations, formatters }) => {
   switch (element) {
     case "input":
-      return <Textfield config={config} validations={validations} />;
+      return (
+        <Textfield
+          config={config}
+          validations={validations}
+          formatters={formatters}
+        />
+      );
     default:
-      return <Textfield config={config} validations={validations} />;
+      return (
+        <Textfield
+          config={config}
+          validations={validations}
+          formatters={formatters}
+        />
+      );
   }
 };
 
-const Field = ({ element, config, validations }) => {
+const Field = ({ element, config, validations, formatters }) => {
   return (
     <TemplateToRender
       element={element}
       config={config}
       validations={validations}
+      formatters={formatters}
     />
   );
 };

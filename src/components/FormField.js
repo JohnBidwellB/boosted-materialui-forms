@@ -20,7 +20,12 @@ export default function FormField({
 }) {
   // return <Wrapper><TextField variant="outlined" label={label} /></Wrapper>;
   return (
-    <Field element={element} config={config} validations={validations} />
+    <Field
+      element={element}
+      config={config}
+      validations={validations}
+      formatters={formatters}
+    />
   );
 }
 

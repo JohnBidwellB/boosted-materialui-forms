@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextField } from "@material-ui/core";
 import { checkValidations } from "../helpers/form.helpers";
+import { formatValue } from "../helpers/formatters.helpers";
 
 const defaultConfig = {
   //   autoComplete: "",
@@ -33,7 +34,7 @@ const defaultConfig = {
   variant: "outlined",
 };
 
-const Textfield = ({ config, validations }) => {
+const Textfield = ({ config, validations, formatters }) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -56,6 +57,10 @@ const Textfield = ({ config, validations }) => {
       } else {
         setError(false);
       }
+    }
+    if (formatters) {
+      const newValue = formatValue(value, formatters);
+      setValue(newValue);
     }
   }, [value]);
 

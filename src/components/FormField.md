@@ -55,6 +55,8 @@ import { FormField } from 'boosted-materialui-forms';
 
 <>
 <FormField config={{ label: 'Required validation' }} validations={{ required: true }}/> {"   "}
-<FormField config={{ label: 'Required validation' }} validations={{ required: { value: true, message: 'Required field'} }}/> {"   "}
+<FormField config={{ label: 'Required validation' }} validations={{ required: { value: true, message: 'You must enter a value'} }}/> {"   "}
+<FormField config={{ label: 'Lenght validation' }} validations={{ length: 5 }}/> {"   "}
+<FormField config={{ label: 'Lenght validation' }} validations={{ required: true, length: { min: 6, minMessage: 'You need to have a minimum of 6 characters', max: 10} }}/> {"   "}
 </>
 ```

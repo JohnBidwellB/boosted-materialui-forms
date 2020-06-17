@@ -21,11 +21,6 @@ export default function FormField({
   // return <Wrapper><TextField variant="outlined" label={label} /></Wrapper>;
   return (
     <Field element={element} config={config} validations={validations} />
-    // <TextField
-
-    //   variant={variant ? variant : "outlined"}
-    //   label={label ? label : "Default"}
-    // />
   );
 }
 

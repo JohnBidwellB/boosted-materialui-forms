@@ -1,5 +1,6 @@
 import { requiredValidation } from "../validations/required.validation";
 import { lengthValidation } from "../validations/length.validation";
+import { rutValidation } from "../validations/rut.validation";
 
 export const checkValidations = (value, validations) => {
   let hasError = false;
@@ -17,8 +18,12 @@ export const checkValidations = (value, validations) => {
       case "length":
         let [lengthValid, message] = lengthValidation(value, options);
         hasError = hasError || !lengthValid;
-        validationMessage =  message;
+        validationMessage = message;
         return;
+      case "chileanRut":
+        let rutValid = rutValidation(value);
+        hasError = hasError || !rutValid;
+        validationMessage = options.message ? options.message : "Invalid RUT";
       default:
         return;
     }

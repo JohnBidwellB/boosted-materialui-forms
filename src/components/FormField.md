@@ -58,5 +58,7 @@ import { FormField } from 'boosted-materialui-forms';
 <FormField config={{ label: 'Required validation' }} validations={{ required: { value: true, message: 'You must enter a value'} }}/> {"   "}
 <FormField config={{ label: 'Lenght validation' }} validations={{ length: 5 }}/> {"   "}
 <FormField config={{ label: 'Lenght validation' }} validations={{ required: true, length: { min: 6, minMessage: 'You need to have a minimum of 6 characters', max: 10} }}/> {"   "}
+<FormField config={{ label: 'Chilean rut validation' }} validations={{ chileanRut: true }}/> {"   "}
+<FormField config={{ label: 'Chilean rut validation' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }}/> {"  "}
 </>
 ```

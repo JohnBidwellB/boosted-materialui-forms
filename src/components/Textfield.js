@@ -34,10 +34,22 @@ const defaultConfig = {
   variant: "outlined",
 };
 
-const Textfield = ({ config, validations, formatters }) => {
+const Textfield = ({
+  config,
+  validations = null,
+  formatters = null,
+  value: propsValue,
+  change = null,
+}) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (propsValue) {
+      setValue(propsValue);
+    }
+  }, [propsValue]);
 
   const updateForm = (event) => {
     event.preventDefault();
@@ -62,6 +74,10 @@ const Textfield = ({ config, validations, formatters }) => {
       const newValue = formatValue(value, formatters);
       setValue(newValue);
     }
+
+    if (change) {
+      change();
+    }
   }, [value]);
 
   return (
@@ -70,6 +86,7 @@ const Textfield = ({ config, validations, formatters }) => {
       {...config}
       error={error}
       value={value}
+      // onChange={change ? change() : updateForm}
       onChange={updateForm}
       helperText={
         error ? message : config?.helperText ? config.helperText : null

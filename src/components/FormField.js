@@ -12,8 +12,8 @@ import Field from "./Field";
 
 export default function FormField({
   element = "input",
-  onchange,
-  value,
+  change = null,
+  value = null,
   config = null,
   validations = null,
   formatters = null,
@@ -25,6 +25,8 @@ export default function FormField({
       config={config}
       validations={validations}
       formatters={formatters}
+      value={value}
+      change={change}
     />
   );
 }

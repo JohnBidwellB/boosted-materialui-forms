@@ -8,7 +8,14 @@ import Textfield from "./Textfield";
 //   ) : null;
 // };
 
-const TemplateToRender = ({ element, config, validations, formatters }) => {
+const TemplateToRender = ({
+  element,
+  config,
+  validations,
+  formatters,
+  value,
+  change,
+}) => {
   switch (element) {
     case "input":
       return (
@@ -16,6 +23,8 @@ const TemplateToRender = ({ element, config, validations, formatters }) => {
           config={config}
           validations={validations}
           formatters={formatters}
+          value={value}
+          change={change}
         />
       );
     default:
@@ -24,18 +33,29 @@ const TemplateToRender = ({ element, config, validations, formatters }) => {
           config={config}
           validations={validations}
           formatters={formatters}
+          value={value}
+          change={change}
         />
       );
   }
 };
 
-const Field = ({ element, config, validations, formatters }) => {
+const Field = ({
+  element,
+  config,
+  validations,
+  formatters,
+  value,
+  change,
+}) => {
   return (
     <TemplateToRender
       element={element}
       config={config}
       validations={validations}
       formatters={formatters}
+      value={value}
+      change={change}
     />
   );
 };

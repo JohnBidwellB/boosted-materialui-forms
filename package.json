@@ -1,6 +1,6 @@
 {
   "name": "boosted-materialui-forms",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "MaterialUI Textfields boosted with validations, formatters and error management ",
   "main": "lib/index.js",
   "homepage": "https://boosted-materialui-forms.johnbidwell.me/",
@@ -9,8 +9,8 @@
     "email": "johnbidwellb@gmail.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/JohnBidwellB/boosted-materialui-forms"
+    "type": "git",
+    "url": "https://github.com/JohnBidwellB/boosted-materialui-forms"
   },
   "scripts": {
     "start": "styleguidist server",
@@ -59,6 +59,7 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
-    "babel-plugin-module-resolver": "^4.0.0"
+    "babel-plugin-module-resolver": "^4.0.0",
+    "prop-types": "^15.7.2"
   }
 }

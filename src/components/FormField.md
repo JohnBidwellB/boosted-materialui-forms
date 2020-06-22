@@ -1,23 +1,27 @@
 Simple FormField
 
-```jsx
+```jsx padded
 import { FormField } from 'boosted-materialui-forms';
 import {useState} from 'react';
 
 // For controlled components 
-const [value, setValue] = useState("");
-const handleChange = event => {
-    setValue(event.target.value)
+const [value, setValue] = useState("hola");
+const handleChange = isValid  => {
+    console.log("Proyecto lupa")
+    console.log("isvalid: ", isValid)
+    // console.log("event: ", event)
+    // console.log(event.target.value)
+    // setValue(event.target.value)
 }
 
 <>
-<FormField config={{ label: 'Controlled component', id: "controlled-component" }} value={value} change={event => handleChange} />{" "}
+<FormField config={{ label: 'Controlled component', id: "controlled-component" }} value={value} change={(isValid) => handleChange(isValid)} />
 <FormField config={{label: 'Uncontrolled component', id: "uncontrolled-component" }} />
 </>
 ```
 
 Label + Placeholder
-```jsx
+```jsx padded 
 
 import { FormField } from 'boosted-materialui-forms';
 
@@ -26,7 +30,7 @@ import { FormField } from 'boosted-materialui-forms';
 
 Variant
 
-```jsx
+```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
 
 <>
@@ -38,7 +42,7 @@ import { FormField } from 'boosted-materialui-forms';
 
 Margin and Full Width
 
-```jsx
+```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
 
 <>
@@ -49,7 +53,7 @@ import { FormField } from 'boosted-materialui-forms';
 ```
 
 Type
-```jsx
+```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
 
 <>
@@ -61,7 +65,7 @@ import { FormField } from 'boosted-materialui-forms';
 
 Validations
 
-```jsx
+```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
 
 <>
@@ -76,16 +80,24 @@ import { FormField } from 'boosted-materialui-forms';
 
 Formatters
 
-```jsx
+```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
+import { useEffect, useState } from 'react';
 
-import {useState} from 'react';
-
+const [isValid, setIsValid] = useState(false);
+const [foo, setFoo] = useState(null)
 // For controlled components 
 const [value, setValue] = useState("hola");
-const handleChange = event => {
+const handleChange = valid => {
+    console.log(event)
+    console.log(valid)
+    setFoo(event.target.value)
+    setIsValid(valid);
     setValue(event.target.value)
 }
-
-<FormField value={value} change={event => handleChange} config={{ id: 'format-chileanrut', label: 'Format Chilean rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
+<>
+IsValid: {isValid ? 'true' : 'false'} 
+<FormField value={value} change={(isValid) => handleChange(isValid)} config={{ id: 'format-chileanrut', label: 'Format Chilean rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
+</>
 ```
+

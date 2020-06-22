@@ -23,14 +23,12 @@ const defaultConfig = {
   margin: "normal",
   //   multiline: false,
   name: "field",
-  //   onChange: null,
   //   placeholder: "",
   //   required: false,
   //   rows: 2,
   //   rowsMax: 4,
   size: "small",
   type: "text",
-  //   value: "",
   variant: "outlined",
 };
 
@@ -58,6 +56,7 @@ const Textfield = ({
 
   // Run validations
   useEffect(() => {
+    let returnIsValid = false;
     if (validations) {
       const { hasError, validationMessage } = checkValidations(
         value,
@@ -69,6 +68,7 @@ const Textfield = ({
       } else {
         setError(false);
       }
+      returnIsValid = !hasError;
     }
     if (formatters) {
       const newValue = formatValue(value, formatters);
@@ -76,7 +76,8 @@ const Textfield = ({
     }
 
     if (change) {
-      change();
+      // console.log(change)
+      change(returnIsValid);
     }
   }, [value]);
 

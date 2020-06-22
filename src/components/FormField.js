@@ -9,6 +9,7 @@ import Field from "./Field";
 //   ${primaryColors}
 //   ${shape}
 // `;
+import propTypes from "prop-types";
 
 export default function FormField({
   element = "input",
@@ -30,5 +31,47 @@ export default function FormField({
     />
   );
 }
+
+FormField.defaultProps = {
+  element: "input",
+  change: null,
+  value: null,
+  config: {
+    color: "primary",
+    margin: "normal",
+    size: "small",
+    type: "text",
+    variant: "outlined",
+  },
+  validations: null,
+  formatters: null,
+};
+FormField.propTypes = {
+  /**
+   * Type of input to display.
+   */
+  element: propTypes.oneOf(["input"]),
+  /**
+   * Function to control FormField value and validations.
+   */
+  change: propTypes.func,
+  /**
+   * When using controlled component, is has input value.
+   */
+  value: propTypes.object,
+  /**
+   * MaterialUI TextField config.
+   */
+  config: propTypes.shape,
+  /**
+   * Validate input.
+   */
+  validations: propTypes.shape,
+  /**
+   * Format input.
+   */
+  formatters: propTypes.shape,
+};
+FormField.des;
 
 // export default Button;

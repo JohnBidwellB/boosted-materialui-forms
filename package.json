@@ -1,8 +1,17 @@
 {
   "name": "boosted-materialui-forms",
-  "version": "0.0.4",
-  "description": "MaterialUI Textfields boosted with validations and error management ",
+  "version": "0.0.5",
+  "description": "MaterialUI Textfields boosted with validations, formatters and error management ",
   "main": "lib/index.js",
+  "homepage": "https://boosted-materialui-forms.johnbidwell.me/",
+  "bugs": {
+    "url": "https://github.com/JohnBidwellB/boosted-materialui-forms/issues/",
+    "email": "johnbidwellb@gmail.com"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/JohnBidwellB/boosted-materialui-forms"
+  }
   "scripts": {
     "start": "styleguidist server",
     "test": "jest",
@@ -18,7 +27,11 @@
     "materialui"
   ],
   "git": "https://github.com/JohnBidwellB/boosted-materialui-forms",
-  "author": "John Bidwell",
+  "author": {
+    "name": "John Bidwell",
+    "email": "johnbidwellb@gmail.com",
+    "url": "https://johnbidwell.me/"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -7,7 +7,6 @@ import {useState} from 'react';
 // For controlled components 
 const [value, setValue] = useState("");
 const handleChange = event => {
-    console.log(event.target)
     setValue(event.target.value)
 }
 
@@ -80,10 +79,10 @@ Formatters
 ```jsx
 import { FormField } from 'boosted-materialui-forms';
 
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 // For controlled components 
-const [value, setValue] = useState("");
+const [value, setValue] = useState("hola");
 const handleChange = event => {
     setValue(event.target.value)
 }

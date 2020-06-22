@@ -76,7 +76,7 @@ const Textfield = ({
     }
 
     if (change) {
-      // console.log(change)
+      console.log(change)
       change(returnIsValid);
     }
   }, [value]);

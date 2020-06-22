@@ -11,6 +11,9 @@ import Field from "./Field";
 // `;
 import propTypes from "prop-types";
 
+/**
+ * FormField component with MaterialUI
+ */
 export default function FormField({
   element = "input",
   change = null,
@@ -72,6 +75,3 @@ FormField.propTypes = {
    */
   formatters: propTypes.shape,
 };
-FormField.des;
-
-// export default Button;

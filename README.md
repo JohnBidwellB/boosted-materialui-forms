@@ -28,3 +28,7 @@ import { FormField } from 'boosted-materialui-forms';
 <FormField />
 ```
 
+
+# Donate
+
+If you like this, you can support development making a donation in my [Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4UCF8DQB42MCQ&currency_code=USD&source=url).

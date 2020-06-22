@@ -88,8 +88,8 @@ const [isValid, setIsValid] = useState(false);
 const [foo, setFoo] = useState(null)
 // For controlled components 
 const [value, setValue] = useState("hola");
-const handleChange = valid => {
-    console.log(event)
+const handleChange = (values, valid) => {
+    console.log(values)
     console.log(valid)
     setFoo(event.target.value)
     setIsValid(valid);
@@ -97,7 +97,7 @@ const handleChange = valid => {
 }
 <>
 IsValid: {isValid ? 'true' : 'false'} 
-<FormField value={value} change={(isValid) => handleChange(isValid)} config={{ id: 'format-chileanrut', label: 'Format Chilean rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
+<FormField value={value} change={(values, isValid) => handleChange(values, isValid)} config={{ id: 'format-chileanrut', label: 'Format Chilean rut', name: 'rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
 </>
 ```
 

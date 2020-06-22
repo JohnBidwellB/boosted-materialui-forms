@@ -39,6 +39,7 @@ const Textfield = ({
   value: propsValue,
   change = null,
 }) => {
+  const [fieldConfig] = useState({ ...defaultConfig, ...config });
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -76,15 +77,19 @@ const Textfield = ({
     }
 
     if (change) {
-      console.log(change)
-      change(returnIsValid);
+      console.log(change);
+      change(
+        { target: fieldConfig.name, value: value },
+        validations ? returnIsValid : null
+      );
     }
   }, [value]);
 
   return (
     <TextField
-      {...defaultConfig}
-      {...config}
+      // {...defaultConfig}
+      // {...config}
+      {...fieldConfig}
       error={error}
       value={value}
       // onChange={change ? change() : updateForm}

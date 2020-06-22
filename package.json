@@ -1,6 +1,6 @@
 {
   "name": "boosted-materialui-forms",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "MaterialUI Textfields boosted with validations, formatters and error management ",
   "main": "lib/index.js",
   "homepage": "https://boosted-materialui-forms.johnbidwell.me/",

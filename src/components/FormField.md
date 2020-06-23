@@ -1,4 +1,4 @@
-Simple FormField
+### Simple FormField
 
 ```jsx padded
 import { FormField } from 'boosted-materialui-forms';
@@ -9,57 +9,42 @@ const [value, setValue] = useState("");
 const handleChange = newValue  => {
     setValue(newValue.value)
 }
-
-<>
-<FormField config={{ label: 'Controlled component', id: "controlled-component" }} value={value} change={(value) => handleChange(value)} />
-<FormField config={{label: 'Uncontrolled component', id: "uncontrolled-component" }} />
-</>
+<FormField config={{label: 'Uncontrolled component' }} />
 ```
 
-Label + Placeholder
-```jsx padded 
+### Controlled components
 
+You can control Formfield value using the prop **`value`** and handle input changes with prop **`change`**.
+
+| prop   | type | description                                                                                                                                  |
+| ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| value  | any  | value of input component                                                                                                                     |
+| change | func | callback fired when value changes. **Valid** returns `null` if prop `validations` is `null`. **`function(value: any, valid: bool) => void`** |
+
+```jsx padded
 import { FormField } from 'boosted-materialui-forms';
 
-<FormField config={{ id: 'label+placeholder', label: 'Name', placeholder: 'John' }} />
+const [value, setValue] = React.useState("");
+const handleChange = newValue  => {
+    setValue(newValue.value)
+}
+
+<FormField config={{ label: 'Controlled component'}} value={value} change={(value) => handleChange(value)} />
+
 ```
 
-Variant
+### Validations
 
-```jsx padded 
-import { FormField } from 'boosted-materialui-forms';
+You can use validations with the props **`validations`**.
 
-<>
-    <FormField config={{id: 'variant-filled', variant: 'filled', label: 'filled' }} />{"   "}
-    <FormField config={{id: 'variant-outlined', variant: 'outlined', label:'outlined' }} />{"   "}
-    <FormField config={{id: 'variant-standard', variant: 'standard', label: 'standard' }} />
-</>
-```
+Allowed validations:
 
-Margin and Full Width
+| name       | default value               | type           | description                          | options                                                                    |
+| ---------- | --------------------------- | -------------- | ------------------------------------ | -------------------------------------------------------------------------- |
+| required   | {message: 'Required field'} | bool, object   | set FormField as required            | {message: string}                                                          |
+| length     | {}                          | number, object | validate string length               | number, {min: number, minMessage: string, max: number, maxMessage: string} |
+| chileanRut | {message: 'Invalid RUT'}    | bool, object   | checks if chilean rut is writen well | {message}                                                                  |
 
-```jsx padded 
-import { FormField } from 'boosted-materialui-forms';
-
-<>
-    <FormField config={{ id: 'margin-dense', margin: 'dense', fullWidth: true, label: 'margin dense + fullWidth' }} />{"   "}
-    <FormField config={{ id: 'margin-normal', margin: 'normal', label: 'margin normal' }} />{"   "}
-    <FormField config={{ id: 'margin-none', margin: 'none', fullWidth: true, label: 'margin none' }} />
-</>
-```
-
-Type
-```jsx padded 
-import { FormField } from 'boosted-materialui-forms';
-
-<>
-    <FormField config={{ id: 'type-text',type: 'text', label: 'text' }} />{"   "}
-    <FormField config={{ id: 'type-number',type: 'number', label: 'number' }} />{"   "}
-    <FormField config={{ id: 'type-password',type: 'password', label: 'password' }} />{"   "}
-</>
-```
-
-Validations
 
 ```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
@@ -74,7 +59,14 @@ import { FormField } from 'boosted-materialui-forms';
 </>
 ```
 
-Formatters
+### Formatters
+
+`boosted-materialui-forms` provides input formatters  using **`formatters`** prop.
+
+| name       | default value | type | description                                |
+| ---------- | ------------- | ---- | ------------------------------------------ |
+| chileanRut | false         | bool | Allow format input with chilean rut format |
+
 
 ```jsx padded 
 import { FormField } from 'boosted-materialui-forms';

@@ -15,6 +15,25 @@ module.exports = {
   title: "Boosted MaterialUI form fields",
   styleguideDir: "dist-docs",
   moduleAliases: {
-    "boosted-materialui-forms": path.resolve(__dirname, "src")
-  }
+    "boosted-materialui-forms": path.resolve(__dirname, "src"),
+  },
+  sections: [
+    { content: "docs/introduction.md" },
+    {
+      name: "Documentation",
+      sections: [
+        {
+          name: "Installation",
+          content: "docs/installation.md",
+          // description: "The description for the installation section",
+        },
+        {
+          name: "Live Demo",
+          content: "src/components/FormField.md",
+          // external: true,
+          // href: "http://example.com",
+        },
+      ],
+    },
+  ],
 };

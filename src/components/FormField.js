@@ -61,17 +61,17 @@ FormField.propTypes = {
   /**
    * When using controlled component, is has input value.
    */
-  value: propTypes.object,
+  value: propTypes.node,
   /**
    * MaterialUI TextField config.
    */
-  config: propTypes.shape,
+  config: propTypes.object,
   /**
    * Validate input.
    */
-  validations: propTypes.shape,
+  validations: propTypes.object,
   /**
    * Format input.
    */
-  formatters: propTypes.shape,
+  formatters: propTypes.object,
 };

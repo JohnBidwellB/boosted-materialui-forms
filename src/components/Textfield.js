@@ -43,6 +43,7 @@ const Textfield = ({
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const [showError, setShowError] = useState(false); // For the first render, it will not shown that has an error
 
   useEffect(() => {
     if (propsValue) {
@@ -52,6 +53,9 @@ const Textfield = ({
 
   const updateForm = (event) => {
     event.preventDefault();
+    if (!showError) {
+      setShowError(true);
+    }
     setValue(event.target.value);
   };
 
@@ -77,7 +81,6 @@ const Textfield = ({
     }
 
     if (change) {
-      console.log(change);
       change(
         { target: fieldConfig.name, value: value },
         validations ? returnIsValid : null
@@ -90,12 +93,11 @@ const Textfield = ({
       // {...defaultConfig}
       // {...config}
       {...fieldConfig}
-      error={error}
+      error={showError && error}
       value={value}
-      // onChange={change ? change() : updateForm}
       onChange={updateForm}
       helperText={
-        error ? message : config?.helperText ? config.helperText : null
+        error && showError ? message : config?.helperText ? config.helperText : null
       }
     />
   );

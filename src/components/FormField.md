@@ -5,17 +5,13 @@ import { FormField } from 'boosted-materialui-forms';
 import {useState} from 'react';
 
 // For controlled components 
-const [value, setValue] = useState("hola");
-const handleChange = isValid  => {
-    console.log("Proyecto lupa")
-    console.log("isvalid: ", isValid)
-    // console.log("event: ", event)
-    // console.log(event.target.value)
-    // setValue(event.target.value)
+const [value, setValue] = useState("");
+const handleChange = newValue  => {
+    setValue(newValue.value)
 }
 
 <>
-<FormField config={{ label: 'Controlled component', id: "controlled-component" }} value={value} change={(isValid) => handleChange(isValid)} />
+<FormField config={{ label: 'Controlled component', id: "controlled-component" }} value={value} change={(value) => handleChange(value)} />
 <FormField config={{label: 'Uncontrolled component', id: "uncontrolled-component" }} />
 </>
 ```
@@ -89,8 +85,6 @@ const [foo, setFoo] = useState(null)
 // For controlled components 
 const [value, setValue] = useState("hola");
 const handleChange = (values, valid) => {
-    console.log(values)
-    console.log(valid)
     setFoo(event.target.value)
     setIsValid(valid);
     setValue(event.target.value)

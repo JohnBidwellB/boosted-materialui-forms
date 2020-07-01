@@ -70,20 +70,52 @@ import { FormField } from 'boosted-materialui-forms';
 
 ```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
-import { useEffect, useState } from 'react';
 
-const [isValid, setIsValid] = useState(false);
-const [foo, setFoo] = useState(null)
-// For controlled components 
-const [value, setValue] = useState("hola");
-const handleChange = (values, valid) => {
-    setFoo(event.target.value)
-    setIsValid(valid);
-    setValue(event.target.value)
-}
-<>
-IsValid: {isValid ? 'true' : 'false'} 
-<FormField value={value} change={(values, isValid) => handleChange(values, isValid)} config={{ id: 'format-chileanrut', label: 'Format Chilean rut', name: 'rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
-</>
+<FormField config={{ label: 'Format Chilean rut', name: 'rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
 ```
 
+### Hooks
+
+`boosted-materialui-forms` brings hooks to help you with form management.
+
+#### useFormValidator
+
+This hooks checks if all fields in a form are valid.
+
+```jsx padded
+import { useState } from "react";
+import { FormField, useFormValidator } from "boosted-materialui-forms";
+
+const [formData, setFormData] = useState({
+  name: { value: "", valid: false },
+  lastname: { value: "", valid: false },
+});
+
+const handleChange = (newValue, isValid) => {
+  const { target, value } = newValue;
+  setFormData((prevData) => ({
+    ...prevData,
+    [target]: {
+      ...prevData[target],
+      value: value,
+      valid: isValid,
+    },
+  }));
+};
+
+const [formIsValid] = useFormValidator(formData);
+
+<>
+  formIsValid: {formIsValid ? 'true' : 'false'}
+  <FormField
+    config={{ label: "name", name: "name" }}
+    change={(newValue, valid) => handleChange(newValue, valid)}
+    validations={{ required: true }}
+  />
+  <FormField
+    config={{ label: "lastname", name: "lastname" }}
+    change={(newValue, valid) => handleChange(newValue, valid)}
+    validations={{ required: true }}
+  />
+</>;
+```

@@ -1,14 +1,5 @@
 import React from "react";
-// import { TextField } from "@material-ui/core";
 import Field from "./Field";
-// import styled from "@emotion/styled";
-// import { font, primaryColors, shape } from "config/styles";
-
-// const Wrapper = styled.button`
-//   ${font}
-//   ${primaryColors}
-//   ${shape}
-// `;
 import propTypes from "prop-types";
 
 /**
@@ -21,8 +12,8 @@ export default function FormField({
   config = null,
   validations = null,
   formatters = null,
+  options = null,
 }) {
-  // return <Wrapper><TextField variant="outlined" label={label} /></Wrapper>;
   return (
     <Field
       element={element}
@@ -31,6 +22,7 @@ export default function FormField({
       formatters={formatters}
       value={value}
       change={change}
+      options={options}
     />
   );
 }
@@ -49,6 +41,7 @@ FormField.defaultProps = {
   validations: null,
   formatters: null,
 };
+
 FormField.propTypes = {
   /**
    * Type of input to display.
@@ -74,4 +67,8 @@ FormField.propTypes = {
    * Format input.
    */
   formatters: propTypes.object,
+  /**
+   * Options when selected element is enabled.
+   */
+  options: propTypes.array,
 };

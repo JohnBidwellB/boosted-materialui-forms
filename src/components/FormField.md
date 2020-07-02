@@ -1,5 +1,9 @@
 ### Simple FormField
 
+| prop   | type   | description                                                                                               |
+| ------ | ------ | --------------------------------------------------------------------------------------------------------- |
+| config | object | This props has all config that [Textfield](https://material-ui.com/es/api/text-field/) component provides |
+
 ```jsx padded
 import { FormField } from 'boosted-materialui-forms';
 import {useState} from 'react';
@@ -72,6 +76,25 @@ import { FormField } from 'boosted-materialui-forms';
 import { FormField } from 'boosted-materialui-forms';
 
 <FormField config={{ label: 'Format Chilean rut', name: 'rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
+```
+
+### Select
+
+`boosted-materialui-forms` provides `select` FormField.
+
+| prop    | type   | default | description                                                                          |
+| ------- | ------ | ------- | ------------------------------------------------------------------------------------ |
+| element | string | 'input' | You can change FormField type by changin 'element' props. Options: 'select', 'input' |
+| options | array  | []      | Options to select                                                                    |
+
+```jsx padded
+import { FormField } from 'boosted-materialui-forms';
+
+const options = [{ label: 'Option 1', value: 1}, { label: 'Option 2', value: 2}, { label: 'Option 3', value: 3 }]; 
+
+<>
+<FormField element="select" options={options} config={{ name: 'select', label: 'select' }} />
+</>
 ```
 
 ### Hooks

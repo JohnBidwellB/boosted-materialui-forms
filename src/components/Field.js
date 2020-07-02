@@ -1,5 +1,6 @@
 import React from "react";
 import Textfield from "./Textfield";
+import SelectField from "./SelectField";
 
 // const showError = (data) => {
 //   const hasError = formData.validation && !formData.valid;
@@ -15,6 +16,7 @@ const TemplateToRender = ({
   formatters,
   value,
   change,
+  options,
 }) => {
   switch (element) {
     case "input":
@@ -25,6 +27,18 @@ const TemplateToRender = ({
           formatters={formatters}
           value={value}
           change={change}
+        />
+      );
+    case "select":
+      return (
+        <Textfield
+          config={config}
+          validation={validations}
+          formatters={formatters}
+          value={value}
+          change={change}
+          options={options}
+          element="select"
         />
       );
     default:
@@ -47,6 +61,7 @@ const Field = ({
   formatters,
   value,
   change,
+  options,
 }) => {
   return (
     <TemplateToRender
@@ -56,6 +71,7 @@ const Field = ({
       formatters={formatters}
       value={value}
       change={change}
+      options={options}
     />
   );
 };

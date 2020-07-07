@@ -41,7 +41,6 @@ const Textfield = ({
   change = null,
   options = null,
 }) => {
-
   const [fieldConfig] = useState({
     ...defaultConfig,
     ...config,
@@ -61,6 +60,7 @@ const Textfield = ({
 
   const updateForm = (event) => {
     event.preventDefault();
+    console.log(event);
     if (!showError) {
       setShowError(true);
     }
@@ -96,31 +96,72 @@ const Textfield = ({
     }
   }, [value]);
 
-  return (
-    <TextField
-      {...fieldConfig}
-      error={showError && error}
-      value={value}
-      onChange={updateForm}
-      helperText={
-        error && showError
-          ? message
-          : config?.helperText
-          ? config.helperText
-          : null
-      }
-    >
-      {element === "select" && options && (
-        <>
+  switch (element) {
+    case "select":
+      return (
+        <TextField
+          {...fieldConfig}
+          error={showError && error}
+          value={value}
+          onChange={updateForm}
+          helperText={
+            error && showError
+              ? message
+              : config?.helperText
+              ? config.helperText
+              : null
+          }
+        >
           {options.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
-        </>
-      )}
-    </TextField>
-  );
+          )}
+        </TextField>
+      );
+    default:
+      return (
+        <TextField
+          {...fieldConfig}
+          error={showError && error}
+          value={value}
+          onChange={updateForm}
+          helperText={
+            error && showError
+              ? message
+              : config?.helperText
+              ? config.helperText
+              : null
+          }
+        />
+      );
+  }
+  // return (
+  //   <TextField
+  //     {...fieldConfig}
+  //     error={showError && error}
+  //     value={value}
+  //     onChange={updateForm}
+  //     helperText={
+  //       error && showError
+  //         ? message
+  //         : config?.helperText
+  //         ? config.helperText
+  //         : null
+  //     }
+  //   >
+  //     {element === "select" && options && (
+  //       <>
+  //         {options.map((option) => (
+  //           <MenuItem key={option.value} value={option.value}>
+  //             {option.label}
+  //           </MenuItem>
+  //         ))}
+  //       </>
+  //     )}
+  //   </TextField>
+  // );
 };
 
 export default Textfield;

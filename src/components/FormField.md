@@ -89,17 +89,20 @@ import { FormField } from 'boosted-materialui-forms';
 
 ```jsx padded
 import { FormField } from 'boosted-materialui-forms';
-
+import {useState} from 'react';
 const options = [{ label: 'Option 1', value: 1}, { label: 'Option 2', value: 2}, { label: 'Option 3', value: 3 }]; 
 
+const [selectedValue, setSelectedValue] = useState(null);
+
 <>
-<FormField element="select" options={options} config={{ name: 'select', label: 'select' }} />
+SelectedValue: {selectedValue}
+<FormField element="select" options={options} config={{ name: 'select', label: 'select' }} value={selectedValue} change={(newValue) => setSelectedValue(newValue.value)}/>
 </>
 ```
 
 ### Hooks
 
-`boosted-materialui-forms` brings hooks to help you with form management.
+`boosted-materialui-forms` has hooks to help you with form management.
 
 #### useFormValidator
 

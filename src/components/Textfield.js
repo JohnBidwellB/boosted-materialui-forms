@@ -60,7 +60,6 @@ const Textfield = ({
 
   const updateForm = (event) => {
     event.preventDefault();
-    console.log(event);
     if (!showError) {
       setShowError(true);
     }
@@ -69,7 +68,7 @@ const Textfield = ({
 
   // Run validations
   useEffect(() => {
-    let returnIsValid = false;
+    let isValid = true;
     if (validations) {
       const { hasError, validationMessage } = checkValidations(
         value,
@@ -81,7 +80,7 @@ const Textfield = ({
       } else {
         setError(false);
       }
-      returnIsValid = !hasError;
+      isValid = !hasError;
     }
     if (formatters) {
       const newValue = formatValue(value, formatters);
@@ -90,8 +89,8 @@ const Textfield = ({
 
     if (change) {
       change(
-        { target: fieldConfig.name, value: value },
-        validations ? returnIsValid : null
+        { target: fieldConfig.name, value: value, valid: isValid }
+        // validations ? isValid : null
       );
     }
   }, [value]);

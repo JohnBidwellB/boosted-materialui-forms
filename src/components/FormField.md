@@ -20,10 +20,10 @@ const handleChange = newValue  => {
 
 You can control Formfield value using the prop **`value`** and handle input changes with prop **`change`**.
 
-| prop   | type | description                                                                                                                                  |
-| ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| value  | any  | value of input component                                                                                                                     |
-| change | func | callback fired when value changes. **Valid** returns `null` if prop `validations` is `null`. **`function(value: any, valid: bool) => void`** |
+| prop   | type | description                                                                                                                                              |
+| ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| value  | any  | value of input component                                                                                                                                 |
+| change | func | callback fired when value changes. **newValue** returns an object {target: string, value: any, valid: boolean}. **`function(newValue: object) => void`** |
 
 ```jsx padded
 import { FormField } from 'boosted-materialui-forms';
@@ -117,14 +117,14 @@ const [formData, setFormData] = useState({
   lastname: { value: "", valid: false },
 });
 
-const handleChange = (newValue, isValid) => {
-  const { target, value } = newValue;
+const handleChange = (newValue) => {
+  const { target, value, valid } = newValue;
   setFormData((prevData) => ({
     ...prevData,
     [target]: {
       ...prevData[target],
       value: value,
-      valid: isValid,
+      valid: valid,
     },
   }));
 };
@@ -135,12 +135,12 @@ const [formIsValid] = useFormValidator(formData);
   formIsValid: {formIsValid ? 'true' : 'false'}
   <FormField
     config={{ label: "name", name: "name" }}
-    change={(newValue, valid) => handleChange(newValue, valid)}
+    change={(newValue) => handleChange(newValue)}
     validations={{ required: true }}
   />
   <FormField
     config={{ label: "lastname", name: "lastname" }}
-    change={(newValue, valid) => handleChange(newValue, valid)}
+    change={(newValue) => handleChange(newValue)}
     validations={{ required: true }}
   />
 </>;

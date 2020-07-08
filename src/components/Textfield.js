@@ -32,6 +32,17 @@ const defaultConfig = {
   variant: "outlined",
 };
 
+const isSelect = (element) => {
+  switch (element) {
+    case "select":
+      return true;
+    case "multiselect":
+      return true;
+    default:
+      return false;
+  }
+};
+
 const Textfield = ({
   element = "input",
   config,
@@ -44,26 +55,28 @@ const Textfield = ({
   const [fieldConfig] = useState({
     ...defaultConfig,
     ...config,
-    select: element === "select" ? true : false,
+    select: isSelect(element),
   });
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(element === "multiselect" ? [] : "");
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [showError, setShowError] = useState(false); // For the first render, it will not show that has an error
 
   useEffect(() => {
-    if (propsValue) {
+    if (propsValue && propsValue !== value) {
       setValue(propsValue);
     }
-  }, [propsValue]);
+  }, []);
 
   const updateForm = (event) => {
     event.preventDefault();
     if (!showError) {
       setShowError(true);
     }
-    setValue(event.target.value);
+    if (event.target.value !== value) {
+      setValue(event.target.value);
+    }
   };
 
   // Run validations
@@ -86,12 +99,8 @@ const Textfield = ({
       const newValue = formatValue(value, formatters);
       setValue(newValue);
     }
-
-    if (change) {
-      change(
-        { target: fieldConfig.name, value: value, valid: isValid }
-        // validations ? isValid : null
-      );
+    if (change && value !== propsValue) {
+      change({ target: fieldConfig.name, value: value, valid: isValid });
     }
   }, [value]);
 
@@ -119,6 +128,29 @@ const Textfield = ({
           )}
         </TextField>
       );
+    case "multiselect":
+      return (
+        <TextField
+          {...fieldConfig}
+          error={showError && error}
+          value={value}
+          onChange={updateForm}
+          helperText={
+            error && showError
+              ? message
+              : config?.helperText
+              ? config.helperText
+              : null
+          }
+          SelectProps={{ multiple: true }}
+        >
+          {options.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+      );
     default:
       return (
         <TextField
@@ -136,31 +168,6 @@ const Textfield = ({
         />
       );
   }
-  // return (
-  //   <TextField
-  //     {...fieldConfig}
-  //     error={showError && error}
-  //     value={value}
-  //     onChange={updateForm}
-  //     helperText={
-  //       error && showError
-  //         ? message
-  //         : config?.helperText
-  //         ? config.helperText
-  //         : null
-  //     }
-  //   >
-  //     {element === "select" && options && (
-  //       <>
-  //         {options.map((option) => (
-  //           <MenuItem key={option.value} value={option.value}>
-  //             {option.label}
-  //           </MenuItem>
-  //         ))}
-  //       </>
-  //     )}
-  //   </TextField>
-  // );
 };
 
 export default Textfield;

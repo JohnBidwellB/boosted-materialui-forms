@@ -80,23 +80,27 @@ import { FormField } from 'boosted-materialui-forms';
 
 ### Select
 
-`boosted-materialui-forms` provides `select` FormField.
+`boosted-materialui-forms` provides `select` and `multiselect`FormField.
+For multiselect the value props must be an array.
 
-| prop    | type   | default | description                                                                          |
-| ------- | ------ | ------- | ------------------------------------------------------------------------------------ |
-| element | string | 'input' | You can change FormField type by changin 'element' props. Options: 'select', 'input' |
-| options | array  | []      | Options to select                                                                    |
+| prop    | type   | default | description                                                                                        |
+| ------- | ------ | ------- | -------------------------------------------------------------------------------------------------- |
+| element | string | 'input' | You can change FormField type by changin 'element' props. Options: 'select', 'input', 'multiselect |
+| options | array  | []      | Options to select                                                                                  |
 
 ```jsx padded
 import { FormField } from 'boosted-materialui-forms';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 const options = [{ label: 'Option 1', value: 1}, { label: 'Option 2', value: 2}, { label: 'Option 3', value: 3 }]; 
 
 const [selectedValue, setSelectedValue] = useState(null);
+const [multiSelectedValue, setMultiSelectedValue] = useState([ ]);
 
 <>
 SelectedValue: {selectedValue}
 <FormField element="select" options={options} config={{ name: 'select', label: 'select' }} value={selectedValue} change={(newValue) => setSelectedValue(newValue.value)}/>
+MultiSelectedValue: {multiSelectedValue}
+<FormField element="multiselect" options={options} config={{ name: 'multiselect', label: 'multiselect' }} value={multiSelectedValue}  change={(newValue) => setMultiSelectedValue(newValue.value)} validations={{required: true}}/>
 </>
 ```
 

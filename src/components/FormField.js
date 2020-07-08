@@ -1,6 +1,6 @@
 import React from "react";
 import Field from "./Field";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 /**
  * FormField component with MaterialUI
@@ -46,29 +46,29 @@ FormField.propTypes = {
   /**
    * Type of input to display.
    */
-  element: propTypes.oneOf(["input"]),
+  element: PropTypes.oneOf(["input", "select", "multiselect"]),
   /**
    * Function to control FormField value and validations.
    */
-  change: propTypes.func,
+  change: PropTypes.func,
   /**
    * When using controlled component, is has input value.
    */
-  value: propTypes.node,
+  value: PropTypes.node,
   /**
    * MaterialUI TextField config.
    */
-  config: propTypes.object,
+  config: PropTypes.object,
   /**
    * Validate input.
    */
-  validations: propTypes.object,
+  validations: PropTypes.object,
   /**
    * Format input.
    */
-  formatters: propTypes.object,
+  formatters: PropTypes.object,
   /**
    * Options when selected element is enabled.
    */
-  options: propTypes.array,
+  options: PropTypes.array,
 };

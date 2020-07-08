@@ -33,12 +33,24 @@ const TemplateToRender = ({
       return (
         <Textfield
           config={config}
-          validation={validations}
+          validations={validations}
           formatters={formatters}
           value={value}
           change={change}
           options={options}
           element="select"
+        />
+      );
+    case "multiselect":
+      return (
+        <Textfield
+          config={config}
+          validations={validations}
+          formatters={formatters}
+          value={value}
+          change={change}
+          options={options}
+          element={element}
         />
       );
     default:

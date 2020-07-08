@@ -13,7 +13,9 @@ const [value, setValue] = useState("");
 const handleChange = newValue  => {
     setValue(newValue.value)
 }
-<FormField config={{label: 'Uncontrolled component' }} />
+<FormField 
+  config={{label: 'Uncontrolled component' }} 
+/>
 ```
 
 ### Controlled components
@@ -33,8 +35,11 @@ const handleChange = newValue  => {
     setValue(newValue.value)
 }
 
-<FormField config={{ label: 'Controlled component'}} value={value} change={(value) => handleChange(value)} />
-
+<FormField 
+  config={{ label: 'Controlled component'}} 
+  value={value} 
+  change={(value) => handleChange(value)} 
+/>
 ```
 
 ### Validations
@@ -54,12 +59,24 @@ Allowed validations:
 import { FormField } from 'boosted-materialui-forms';
 
 <>
-<FormField config={{ id: 'validation-required1',label: 'Required validation' }} validations={{ required: true }}/> {"   "}
-<FormField config={{id: 'validation-required2', label: 'Required validation' }} validations={{ required: { value: true, message: 'You must enter a value'} }}/> {"   "}
-<FormField config={{id: 'validation-length1', label: 'Lenght validation' }} validations={{ length: 5 }}/> {"   "}
-<FormField config={{id: 'validation-length2', label: 'Lenght validation' }} validations={{ required: true, length: { min: 6, minMessage: 'You need to have a minimum of 6 characters', max: 10} }}/> {"   "}
-<FormField config={{id: 'validation-chileanrut1', label: 'Validate Chilean rut' }} validations={{ chileanRut: true }}/> {"   "}
-<FormField config={{id: 'validation-chileanrut2', label: 'Validate Chilean rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }}/> {"  "}
+<FormField 
+  config={{ id: 'validation-required1',label: 'Required validation' }} 
+  validations={{ required: true }}/> {"   "}
+<FormField 
+  config={{id: 'validation-required2', label: 'Required validation' }}  
+  validations={{ required: { value: true, message: 'You must enter a value'} }}/> {"   "}
+<FormField 
+  config={{id: 'validation-length1', label: 'Lenght validation' }}
+  validations={{ length: 5 }}/> {"   "}
+<FormField 
+  config={{id: 'validation-length2', label: 'Lenght validation' }} 
+  validations={{ required: true, length: { min: 6, minMessage: 'You need to have a minimum of 6 characters', max: 10} }}/> {"   "}
+<FormField 
+  config={{id: 'validation-chileanrut1', label: 'Validate Chilean rut' }} 
+  validations={{ chileanRut: true }}/> {"   "}
+<FormField 
+  config={{id: 'validation-chileanrut2', label: 'Validate Chilean rut' }} 
+  validations={{ chileanRut: {value: true, message: 'RUT inválido' } }}/> {"  "}
 </>
 ```
 
@@ -75,7 +92,11 @@ import { FormField } from 'boosted-materialui-forms';
 ```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
 
-<FormField config={{ label: 'Format Chilean rut', name: 'rut' }} validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} formatters={{ chileanRut: true }}/> 
+<FormField 
+  config={{ label: 'Format Chilean rut', name: 'rut' }} 
+  validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} 
+  formatters={{ chileanRut: true }}
+/> 
 ```
 
 ### Select
@@ -91,6 +112,7 @@ For multiselect the value props must be an array.
 ```jsx padded
 import { FormField } from 'boosted-materialui-forms';
 import {useState, useEffect} from 'react';
+
 const options = [{ label: 'Option 1', value: 1}, { label: 'Option 2', value: 2}, { label: 'Option 3', value: 3 }]; 
 
 const [selectedValue, setSelectedValue] = useState(null);
@@ -98,9 +120,20 @@ const [multiSelectedValue, setMultiSelectedValue] = useState([ ]);
 
 <>
 SelectedValue: {selectedValue}
-<FormField element="select" options={options} config={{ name: 'select', label: 'select' }} value={selectedValue} change={(newValue) => setSelectedValue(newValue.value)}/>
+<FormField 
+  element="select" 
+  options={options} 
+  config={{ name: 'select', label: 'select' }} 
+  value={selectedValue} 
+  change={(newValue) => setSelectedValue(newValue.value)}/>
 MultiSelectedValue: {multiSelectedValue}
-<FormField element="multiselect" options={options} config={{ name: 'multiselect', label: 'multiselect' }} value={multiSelectedValue}  change={(newValue) => setMultiSelectedValue(newValue.value)} validations={{required: true}}/>
+<FormField 
+  element="multiselect" 
+  options={options} 
+  config={{ name: 'multiselect', label: 'multiselect' }} 
+  value={multiSelectedValue}  
+  change={(newValue) => setMultiSelectedValue(newValue.value)} 
+  validations={{required: true}}/>
 </>
 ```
 

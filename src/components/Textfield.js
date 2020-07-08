@@ -43,6 +43,15 @@ const isSelect = (element) => {
   }
 };
 
+const setInitialValue = (element, initialValue) => {
+  switch (element) {
+    case "multiselect":
+      return initialValue ? initialValue : [];
+    default:
+      return initialValue ? initialValue : "";
+  }
+};
+
 const Textfield = ({
   element = "input",
   config,
@@ -58,16 +67,13 @@ const Textfield = ({
     select: isSelect(element),
   });
 
-  const [value, setValue] = useState(element === "multiselect" ? [] : "");
+  const [value, setValue] = useState(
+    // element === "multiselect" ? [] : "186685156"
+    setInitialValue(element, propsValue)
+  );
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [showError, setShowError] = useState(false); // For the first render, it will not show that has an error
-
-  useEffect(() => {
-    if (propsValue && propsValue !== value) {
-      setValue(propsValue);
-    }
-  }, []);
 
   const updateForm = (event) => {
     event.preventDefault();

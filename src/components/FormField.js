@@ -13,6 +13,7 @@ export default function FormField({
   validations = null,
   formatters = null,
   options = null,
+  error = false,
 }) {
   return (
     <Field
@@ -23,6 +24,7 @@ export default function FormField({
       value={value}
       change={change}
       options={options}
+      error={error}
     />
   );
 }
@@ -40,6 +42,7 @@ FormField.defaultProps = {
   },
   validations: null,
   formatters: null,
+  error: false,
 };
 
 FormField.propTypes = {
@@ -71,4 +74,8 @@ FormField.propTypes = {
    * Options when selected element is enabled.
    */
   options: PropTypes.array,
+  /**
+   * Error message
+   */
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };

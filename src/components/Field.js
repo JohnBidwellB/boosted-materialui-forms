@@ -17,6 +17,7 @@ const TemplateToRender = ({
   value,
   change,
   options,
+  error,
 }) => {
   switch (element) {
     case "input":
@@ -27,6 +28,7 @@ const TemplateToRender = ({
           formatters={formatters}
           value={value}
           change={change}
+          error={error}
         />
       );
     case "select":
@@ -39,6 +41,7 @@ const TemplateToRender = ({
           change={change}
           options={options}
           element="select"
+          error={error}
         />
       );
     case "multiselect":
@@ -51,6 +54,7 @@ const TemplateToRender = ({
           change={change}
           options={options}
           element={element}
+          error={error}
         />
       );
     default:
@@ -61,6 +65,7 @@ const TemplateToRender = ({
           formatters={formatters}
           value={value}
           change={change}
+          error={error}
         />
       );
   }
@@ -74,6 +79,7 @@ const Field = ({
   value,
   change,
   options,
+  error,
 }) => {
   return (
     <TemplateToRender
@@ -84,6 +90,7 @@ const Field = ({
       value={value}
       change={change}
       options={options}
+      error={error}
     />
   );
 };

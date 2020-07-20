@@ -42,6 +42,30 @@ const handleChange = newValue  => {
 />
 ```
 
+### Error
+
+FormFields error can be managed via `error` props.
+
+| name  | default value | type            | description   |
+| ----- | ------------- | --------------- | ------------- |
+| error | false         | string, boolean | Error message |
+
+
+```jsx padded 
+import { FormField } from 'boosted-materialui-forms';
+
+<>
+<FormField 
+  config={{ label: 'Error', name: 'error' }} 
+  error={true}
+/> 
+<FormField 
+  config={{ label: 'Error', name: 'error' }} 
+  error="Error message"
+/> 
+</>
+```
+
 ### Validations
 
 You can use validations with the props **`validations`**.

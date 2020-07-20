@@ -55,11 +55,12 @@ const setInitialValue = (element, initialValue) => {
 const Textfield = ({
   element = "input",
   config,
-  validations = null,
-  formatters = null,
+  validations,
+  formatters,
   value: propsValue,
-  change = null,
-  options = null,
+  change,
+  options,
+  error: errorProps,
 }) => {
   const [fieldConfig] = useState({
     ...defaultConfig,
@@ -71,9 +72,9 @@ const Textfield = ({
     // element === "multiselect" ? [] : "186685156"
     setInitialValue(element, propsValue)
   );
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(errorProps);
   const [message, setMessage] = useState("");
-  const [showError, setShowError] = useState(false); // For the first render, it will not show that has an error
+  const [showError, setShowError] = useState(false || Boolean(errorProps)); // For the first render, it will not show that has an error
 
   const updateForm = (event) => {
     event.preventDefault();
@@ -84,6 +85,10 @@ const Textfield = ({
       setValue(event.target.value);
     }
   };
+
+  useEffect(() => {
+    setMessage(errorProps);
+  }, [error]);
 
   // Run validations
   useEffect(() => {

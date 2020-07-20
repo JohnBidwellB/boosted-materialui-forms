@@ -206,3 +206,45 @@ const [formIsValid] = useFormValidator(formData);
   />
 </>;
 ```
+
+#### useFormErrors
+
+This hooks checks if all fields in a form are valid.
+
+```jsx padded
+import { useState } from "react";
+import { FormField, useFormValidator } from "boosted-materialui-forms";
+
+const [formData, setFormData] = useState({
+  name: { value: "", valid: false },
+  lastname: { value: "", valid: false },
+});
+
+const handleChange = (newValue) => {
+  const { target, value, valid } = newValue;
+  setFormData((prevData) => ({
+    ...prevData,
+    [target]: {
+      ...prevData[target],
+      value: value,
+      valid: valid,
+    },
+  }));
+};
+
+const [formIsValid] = useFormValidator(formData);
+
+<>
+  formIsValid: {formIsValid ? 'true' : 'false'}
+  <FormField
+    config={{ label: "name", name: "name" }}
+    change={(newValue) => handleChange(newValue)}
+    validations={{ required: true }}
+  />
+  <FormField
+    config={{ label: "lastname", name: "lastname" }}
+    change={(newValue) => handleChange(newValue)}
+    validations={{ required: true }}
+  />
+</>;
+```

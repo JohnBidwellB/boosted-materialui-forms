@@ -209,16 +209,17 @@ const [formIsValid] = useFormValidator(formData);
 
 #### useFormErrors
 
-This hooks checks if all fields in a form are valid.
+This hook can read validations error messages from different sources adding an errorMessage attribute and changing valid to false in formData object
 
 ```jsx padded
-import { useState } from "react";
-import { FormField, useFormValidator } from "boosted-materialui-forms";
+import { useState, useEffect } from "react"
+import { FormField, useFormError } from "boosted-materialui-forms"
 
 const [formData, setFormData] = useState({
-  name: { value: "", valid: false },
-  lastname: { value: "", valid: false },
-});
+  email: { value: "test@test", valid: false, errorMessage: false },
+})
+
+const [errors, setErrors] = useState(null)
 
 const handleChange = (newValue) => {
   const { target, value, valid } = newValue;
@@ -227,24 +228,37 @@ const handleChange = (newValue) => {
     [target]: {
       ...prevData[target],
       value: value,
-      valid: valid,
     },
   }));
 };
 
-const [formIsValid] = useFormValidator(formData);
+useEffect(() => {
+  if (!errors) {
+    setErrors({
+    email: {
+      properties: {
+        message: 'No es un email válido!',
+        type: 'user defined',
+        path: 'email',
+        value: 'test@test',
+      },
+    },
+  })
+  } 
+}, [formData])
 
+const [formDataWithErrors] = useFormError('mongo', errors, formData);
+useEffect(() => {
+  setFormData(formDataWithErrors);
+}, [formDataWithErrors]);
+// console.log('formDataWithErrors: ', formData);
+console.log('formdata:', formData);
 <>
-  formIsValid: {formIsValid ? 'true' : 'false'}
   <FormField
-    config={{ label: "name", name: "name" }}
+    value={formData.email.value}
+    config={{ label: "email", name: "email" }}
     change={(newValue) => handleChange(newValue)}
-    validations={{ required: true }}
+    error={!formData.email.valid ? formData.email.errorMessage : false}
   />
-  <FormField
-    config={{ label: "lastname", name: "lastname" }}
-    change={(newValue) => handleChange(newValue)}
-    validations={{ required: true }}
-  />
-</>;
+</>
 ```

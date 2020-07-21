@@ -77,9 +77,9 @@ const Textfield = ({
   )
   const [showValidationError, setShowValidationError] = useState(false)
 
-  console.log(config.name, error)
-  console.log(config.name, Boolean(error))
-  console.log(config.name, showError)
+  // console.log(config.name, error)
+  // console.log(config.name, Boolean(error))
+  // console.log(config.name, showError)
 
   const updateForm = (event) => {
     event.preventDefault()
@@ -95,7 +95,7 @@ const Textfield = ({
   }
 
   useEffect(() => {
-    console.log("error: ", error)
+    // console.log('error: ', error)
     if (error) {
       setMessage(error)
       setShowError(true)
@@ -134,11 +134,11 @@ const Textfield = ({
       return (
         <TextField
           {...fieldConfig}
-          error={showError && error}
+          error={showError || (showValidationError && allowShowValidationError)}
           value={value}
           onChange={updateForm}
           helperText={
-            error && showError
+            showError || (showValidationError && allowShowValidationError)
               ? message
               : config?.helperText
               ? config.helperText
@@ -157,11 +157,11 @@ const Textfield = ({
       return (
         <TextField
           {...fieldConfig}
-          error={showError && error}
+          error={showError || (showValidationError && allowShowValidationError)}
           value={value}
           onChange={updateForm}
           helperText={
-            error && showError
+            showError || (showValidationError && allowShowValidationError)
               ? message
               : config?.helperText
               ? config.helperText

@@ -252,7 +252,7 @@ useEffect(() => {
   setFormData(formDataWithErrors);
 }, [formDataWithErrors]);
 // console.log('formDataWithErrors: ', formData);
-console.log('formdata:', formData);
+// console.log('formdata:', formData);
 <>
   <FormField
     value={formData.email.value}

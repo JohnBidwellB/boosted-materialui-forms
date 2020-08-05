@@ -1,3 +1,27 @@
+### Testing with onChange
+
+```jsx padded
+import { FormField } from 'boosted-materialui-forms';
+
+const [value, setValue] = React.useState("");
+const handleChange = (event, options) => {
+  event.preventDefault()
+  const {name, value} = event.target
+  const {valid, formattedValue} = options
+  console.log(name, value)
+  console.log(valid, formattedValue)
+  setValue(value)
+}
+
+<FormField 
+  config={{ label: 'Controlled component', name: 'Testing onChange'}} 
+  value={value} 
+  onChange={handleChange} 
+  validations={{ required: true, chileanRut: true }}
+  formatters={{ chileanRut: true }}
+/>
+```
+
 ### Simple FormField
 
 | prop   | type   | description                                                                                               |

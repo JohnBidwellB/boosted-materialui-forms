@@ -1,59 +1,122 @@
-import React from "react";
-import Field from "./Field";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Textfield from './Textfield'
 
 /**
  * FormField component with MaterialUI
  */
+
 export default function FormField({
-  element = "input",
-  change = null,
-  value = null,
-  config = null,
-  validations = null,
-  formatters = null,
-  options = null,
-  error = false,
+  element,
+  change,
+  value,
+  config,
+  validations,
+  formatters,
+  options,
+  error,
+  onChange
 }) {
-  return (
-    <Field
-      element={element}
-      config={config}
-      validations={validations}
-      formatters={formatters}
-      value={value}
-      change={change}
-      options={options}
-      error={error}
-    />
-  );
+  switch (element) {
+    case 'input':
+      return (
+        <Textfield
+          element={element}
+          config={config}
+          validations={validations}
+          formatters={formatters}
+          value={value}
+          change={change}
+          error={error}
+          onChange={onChange}
+        />
+      )
+    case 'select':
+      return (
+        <Textfield
+          config={config}
+          validations={validations}
+          formatters={formatters}
+          value={value}
+          options={options}
+          element='select'
+          error={error}
+          change={change}
+          onChange={onChange}
+        />
+      )
+    case 'multiselect':
+      return (
+        <Textfield
+          config={config}
+          validations={validations}
+          formatters={formatters}
+          value={value}
+          change={change}
+          options={options}
+          element={element}
+          error={error}
+          onChange={onChange}
+        />
+      )
+    default:
+      return (
+        <Textfield
+          config={config}
+          validations={validations}
+          formatters={formatters}
+          value={value}
+          change={change}
+          error={error}
+          onChange={onChange}
+        />
+      )
+  }
+  // return (
+  //   <Field
+  //     element={element}
+  //     config={config}
+  //     validations={validations}
+  //     formatters={formatters}
+  //     value={value}
+  //     change={change}
+  //     options={options}
+  //     error={error}
+  //     onChange={onChange}
+  //   />
+  // )
 }
 
 FormField.defaultProps = {
-  element: "input",
+  element: 'input',
   change: null,
   value: null,
   config: {
-    color: "primary",
-    margin: "normal",
-    size: "small",
-    type: "text",
-    variant: "outlined",
+    color: 'primary',
+    margin: 'normal',
+    size: 'small',
+    type: 'text',
+    variant: 'outlined'
   },
   validations: null,
   formatters: null,
   error: false,
-};
+  onChange: null
+}
 
 FormField.propTypes = {
   /**
    * Type of input to display.
    */
-  element: PropTypes.oneOf(["input", "select", "multiselect"]),
+  element: PropTypes.oneOf(['input', 'select', 'multiselect']),
   /**
    * Function to control FormField value and validations.
    */
   change: PropTypes.func,
+  /**
+   * Function to control FormField value and validations.
+   */
+  onChange: PropTypes.func,
   /**
    * When using controlled component, is has input value.
    */
@@ -77,5 +140,5 @@ FormField.propTypes = {
   /**
    * Error message
    */
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-};
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+}

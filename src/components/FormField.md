@@ -22,6 +22,31 @@ const handleChange = (event, options) => {
 />
 ```
 
+### Date and DateTime pickers
+
+##### Date picker
+
+More info [keyboard datepicker](https://material-ui-pickers.dev/api/KeyboardDatePicker)
+
+Date picker returns date value in onChange
+
+```jsx padded
+import { FormField } from 'boosted-materialui-forms';
+import {useState} from 'react';
+
+const [date, setDate] = useState();
+const handleChange = date  => {
+  setDate(date)
+}
+<FormField 
+  element="date"
+  config={{label: 'date picker', minDate: new Date('01/01/2020'), maxDate: new Date('12/31/2020'), helperText: 'Helper text'}} 
+  value={date}
+  onChange={handleChange}
+  // error="Hola mundo"
+/>
+```
+
 ### Simple FormField
 
 | prop   | type   | description                                                                                               |

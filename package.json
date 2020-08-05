@@ -1,6 +1,6 @@
 {
   "name": "boosted-materialui-forms",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "MaterialUI Textfields boosted with validations, formatters and error management ",
   "main": "lib/index.js",
   "homepage": "https://boosted-materialui-forms.johnbidwell.me/",
@@ -55,11 +55,15 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.10.2",
+    "@material-ui/pickers": "^3.2.10",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "dependencies": {
+    "@date-io/date-fns": "^1.3.13",
+    "@material-ui/pickers": "^3.2.10",
     "babel-plugin-module-resolver": "^4.0.0",
+    "date-fns": "^2.15.0",
     "prop-types": "^15.7.2"
   }
 }

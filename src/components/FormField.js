@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Textfield from './Textfield'
+import DateField from './DateField'
 
 /**
  * FormField component with MaterialUI
@@ -59,6 +60,16 @@ export default function FormField({
           onChange={onChange}
         />
       )
+    case 'date':
+      return (
+        <DateField
+          value={value}
+          config={config}
+          onChange={onChange}
+          error={error}
+          // validations={validations}
+        />
+      )
     default:
       return (
         <Textfield
@@ -108,7 +119,7 @@ FormField.propTypes = {
   /**
    * Type of input to display.
    */
-  element: PropTypes.oneOf(['input', 'select', 'multiselect']),
+  element: PropTypes.oneOf(['input', 'select', 'multiselect', 'date']),
   /**
    * Function to control FormField value and validations.
    */

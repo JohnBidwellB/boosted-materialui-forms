@@ -33,6 +33,10 @@ module.exports = {
           // external: true,
           // href: "http://example.com",
         },
+        {
+          name: 'Props',
+          content: 'docs/props.md'
+        }
       ],
     },
   ],

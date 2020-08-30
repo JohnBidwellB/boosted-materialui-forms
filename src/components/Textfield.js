@@ -153,7 +153,7 @@ const Textfield = ({
           {...fieldConfig}
           error={showError || (showValidationError && allowShowValidationError)}
           value={value}
-          onChange={onChange ? onChange : updateForm}
+          onChange={updateForm}
           helperText={
             showError || (showValidationError && allowShowValidationError)
               ? message
@@ -176,7 +176,7 @@ const Textfield = ({
           {...fieldConfig}
           error={showError || (showValidationError && allowShowValidationError)}
           value={value}
-          onChange={onChange ? onChange : updateForm}
+          onChange={updateForm}
           helperText={
             showError || (showValidationError && allowShowValidationError)
               ? message

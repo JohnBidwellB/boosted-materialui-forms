@@ -8,8 +8,6 @@ const handleChange = (event, options) => {
   event.preventDefault()
   const {name, value} = event.target
   const {valid, formattedValue} = options
-  console.log(name, value)
-  console.log(valid, formattedValue)
   setValue(value)
 }
 
@@ -227,12 +225,14 @@ const [formData, setFormData] = useState({
   lastname: { value: "", valid: false },
 });
 
-const handleChange = (newValue) => {
-  const { target, value, valid } = newValue;
+const handleChange = (event, options) => {
+  event.preventDefault()
+  const {name, value} = event.target
+  const {valid} = options;
   setFormData((prevData) => ({
     ...prevData,
-    [target]: {
-      ...prevData[target],
+    [name]: {
+      ...prevData[name],
       value: value,
       valid: valid,
     },
@@ -245,12 +245,12 @@ const [formIsValid] = useFormValidator(formData);
   formIsValid: {formIsValid ? 'true' : 'false'}
   <FormField
     config={{ label: "name", name: "name" }}
-    change={(newValue) => handleChange(newValue)}
+    onChange={handleChange}
     validations={{ required: true }}
   />
   <FormField
     config={{ label: "lastname", name: "lastname" }}
-    change={(newValue) => handleChange(newValue)}
+    onChange={handleChange}
     validations={{ required: true }}
   />
 </>;
@@ -265,24 +265,32 @@ import { useState, useEffect } from "react"
 import { FormField, useFormError } from "boosted-materialui-forms"
 
 const [formData, setFormData] = useState({
-  email: { value: "test@test", valid: false, errorMessage: false },
+  email: { 
+    value: "test@test", 
+    valid: false, 
+    error: false,
+    change: handleChange,
+    config: { label: "email", name: "email" }
+  },
 })
 
 const [errors, setErrors] = useState(null)
 
-const handleChange = (newValue) => {
-  const { target, value, valid } = newValue;
+const handleChange = (event, options) => {
+  const {target, value} = event
+  const { valid } = options;
   setFormData((prevData) => ({
     ...prevData,
     [target]: {
       ...prevData[target],
       value: value,
+      valid: valid
     },
   }));
 };
 
 useEffect(() => {
-  if (!errors) {
+  if (!errors && !formData.email.errorMessage) {
     setErrors({
     email: {
       properties: {
@@ -300,14 +308,14 @@ const [formDataWithErrors] = useFormError('mongo', errors, formData);
 useEffect(() => {
   setFormData(formDataWithErrors);
 }, [formDataWithErrors]);
-// console.log('formDataWithErrors: ', formData);
-// console.log('formdata:', formData);
+
 <>
   <FormField
-    value={formData.email.value}
-    config={{ label: "email", name: "email" }}
-    change={(newValue) => handleChange(newValue)}
-    error={!formData.email.valid ? formData.email.errorMessage : false}
+    {...formData.email}
+    // value={formData.email.value}
+    // config={{ label: "email", name: "email" }}
+    // change={(newValue) => handleChange(newValue)}
+    // error={!formData.email.valid ? formData.email.errorMessage : false}
   />
 </>
 ```

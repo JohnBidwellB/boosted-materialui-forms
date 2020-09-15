@@ -1,33 +1,33 @@
 // import React, { useEffect, useState } from 'react'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 const useFormError = (type = null, errors = null, formData = null) => {
-  const [formDataWithErrors, setFormDataWithErrors] = useState(formData)
-  useEffect(() => {
-    switch (type) {
-      case 'mongo':
-        if (errors && formData) {
-          Object.entries(errors).map(([key, data]) => {
-            formData[key] = {
-              ...formData[key],
-              valid: false,
-              errorMessage: data.properties.message
-            }
-          })
-          break
-        } else {
-          break
-        }
-      default:
-        break
-    }
-    setFormDataWithErrors(formData)
-  }, [errors])
-  return [formDataWithErrors]
-}
+	const [formDataWithErrors, setFormDataWithErrors] = useState(formData);
+	useEffect(() => {
+		switch (type) {
+			case "mongo":
+				if (errors && formData) {
+					Object.entries(errors).map(([key, data]) => {
+						formData[key] = {
+							...formData[key],
+							valid: false,
+							errorMessage: data.properties.message,
+						};
+					});
+					break;
+				} else {
+					break;
+				}
+			default:
+				break;
+		}
+		setFormDataWithErrors(formData);
+	}, [errors]);
+	return [formDataWithErrors];
+};
 
-export default useFormError
+export default useFormError;
 
 // const errors = {
 //   email: {

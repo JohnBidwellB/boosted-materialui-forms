@@ -78,6 +78,10 @@ const Textfield = ({
 	);
 	const [showValidationError, setShowValidationError] = useState(false);
 
+	useEffect(() => {
+		setValue(propsValue);
+	}, [propsValue]);
+
 	const updateForm = (event) => {
 		event.preventDefault();
 		if (!allowShowValidationError) {

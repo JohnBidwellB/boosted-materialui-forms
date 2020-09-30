@@ -124,6 +124,7 @@ Allowed validations:
 | required   | {message: 'Required field'} | bool, object   | set FormField as required            | {message: string}                                                          |
 | length     | {}                          | number, object | validate string length               | number, {min: number, minMessage: string, max: number, maxMessage: string} |
 | chileanRut | {message: 'Invalid RUT'}    | bool, object   | checks if chilean rut is writen well | {message}                                                                  |
+| email      | {message: 'Invalid email'}  | bool, object   | checks if email is valid             | {message}                                                                  |
 
 
 ```jsx padded 
@@ -148,6 +149,9 @@ import { FormField } from 'boosted-materialui-forms';
 <FormField 
   config={{id: 'validation-chileanrut2', label: 'Validate Chilean rut' }} 
   validations={{ chileanRut: {value: true, message: 'RUT inválido' } }}/> {"  "}
+<FormField 
+  config={{id: 'validation-email', label: 'Validate email' }} 
+  validations={{ email: { message: 'email inválido' } }}/> {"  "}
 </>
 ```
 

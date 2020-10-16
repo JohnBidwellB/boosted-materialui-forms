@@ -2,6 +2,7 @@ import { requiredValidation } from "../validations/required.validation";
 import { lengthValidation } from "../validations/length.validation";
 import { rutValidation } from "../validations/rut.validation";
 import { emailValidation } from "../validations";
+import { chileanCellphoneValidation } from "../validations/cellphone.validation";
 
 export const checkValidations = (value, validations) => {
 	let hasError = false;
@@ -30,6 +31,13 @@ export const checkValidations = (value, validations) => {
 				let emailValid = emailValidation(value);
 				hasError = hasError || !emailValid;
 				validationMessage = options.message ? options.message : "Invalid email";
+				return;
+			case "chileanCellphone":
+				let cellphoneValid = chileanCellphoneValidation(value);
+				hasError = hasError || !cellphoneValid;
+				validationMessage = options.message
+					? options.message
+					: "Invalid cellphone";
 				return;
 			default:
 				return;

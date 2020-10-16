@@ -119,40 +119,70 @@ You can use validations with the props **`validations`**.
 
 Allowed validations:
 
-| name       | default value               | type           | description                          | options                                                                    |
-| ---------- | --------------------------- | -------------- | ------------------------------------ | -------------------------------------------------------------------------- |
-| required   | {message: 'Required field'} | bool, object   | set FormField as required            | {message: string}                                                          |
-| length     | {}                          | number, object | validate string length               | number, {min: number, minMessage: string, max: number, maxMessage: string} |
-| chileanRut | {message: 'Invalid RUT'}    | bool, object   | checks if chilean rut is writen well | {message}                                                                  |
-| email      | {message: 'Invalid email'}  | bool, object   | checks if email is valid             | {message}                                                                  |
-
+| name             | default value               | type           | description                          | options                                                                    |
+| ---------------- | --------------------------- | -------------- | ------------------------------------ | -------------------------------------------------------------------------- |
+| required         | {message: 'Required field'} | bool, object   | set FormField as required            | {message: string}                                                          |
+| length           | {}                          | number, object | validate string length               | number, {min: number, minMessage: string, max: number, maxMessage: string} |
+| chileanRut       | {message: 'Invalid RUT'}    | bool, object   | checks if chilean rut is writen well | {message: string}                                                          |
+| email            | {message: 'Invalid email'}  | bool, object   | checks if email is valid             | {message: string}                                                          |
+| chileanCellphone | {}                          | bool, object   | validate chilean cellphone number    | {message: string}                                                          |
 
 ```jsx padded 
+import {useState, Fragment} from 'react';
 import { FormField } from 'boosted-materialui-forms';
 
-<>
-<FormField 
-  config={{ id: 'validation-required1',label: 'Required validation' }} 
-  validations={{ required: true }}/> {"   "}
-<FormField 
-  config={{id: 'validation-required2', label: 'Required validation' }}  
-  validations={{ required: { value: true, message: 'You must enter a value'} }}/> {"   "}
-<FormField 
-  config={{id: 'validation-length1', label: 'Lenght validation' }}
-  validations={{ length: 5 }}/> {"   "}
-<FormField 
-  config={{id: 'validation-length2', label: 'Lenght validation' }} 
-  validations={{ required: true, length: { min: 6, minMessage: 'You need to have a minimum of 6 characters', max: 10} }}/> {"   "}
-<FormField 
-  config={{id: 'validation-chileanrut1', label: 'Validate Chilean rut' }} 
-  validations={{ chileanRut: true }}/> {"   "}
-<FormField 
-  config={{id: 'validation-chileanrut2', label: 'Validate Chilean rut' }} 
-  validations={{ chileanRut: {value: true, message: 'RUT inválido' } }}/> {"  "}
-<FormField 
-  config={{id: 'validation-email', label: 'Validate email' }} 
-  validations={{ email: { message: 'email inválido' } }}/> {"  "}
-</>
+const [value, setValue] = useState('');
+
+<Fragment>
+  <FormField 
+    config={{ id: 'validation-required1',label: 'Required validation' }} 
+    validations={{ required: true }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"   "}
+  <FormField 
+    config={{id: 'validation-required2', label: 'Required validation' }}  
+    validations={{ required: { value: true, message: 'You must enter a value'} }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"   "}
+  <FormField 
+    config={{id: 'validation-length1', label: 'Lenght validation' }}
+    validations={{ length: 5 }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"   "}
+  <FormField 
+    config={{id: 'validation-length2', label: 'Lenght validation' }} 
+    validations={{ required: true, length: { min: 6, minMessage: 'You need to have a minimum of 6 characters', max: 10} }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"   "}
+  <FormField 
+    config={{id: 'validation-chileanrut1', label: 'Validate Chilean rut' }} 
+    validations={{ chileanRut: true }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"   "}
+  <FormField 
+    config={{id: 'validation-chileanrut2', label: 'Validate Chilean rut' }} 
+    validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"  "}
+  <FormField 
+    config={{id: 'validation-email', label: 'Validate email' }} 
+    validations={{ email: { message: 'email inválido' } }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"  "}
+  <FormField 
+    config={{id: 'validation-chileanCellphone', label: 'Validate celphone' }} 
+    validations={{ chileanCellphone: { message: 'Número inválido' } }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"  "}
+</Fragment>;
 ```
 
 ### Formatters

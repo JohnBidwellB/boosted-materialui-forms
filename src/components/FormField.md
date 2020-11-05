@@ -182,6 +182,12 @@ const [value, setValue] = useState('');
     value={value} 
     onChange={(event) => setValue(event.target.value)}
   /> {"  "}
+  <FormField 
+    config={{id: 'validation-chilean-patent', label: 'Validate patent' }} 
+    validations={{ chileanPatent: { message: 'Patente inválida' } }} 
+    value={value} 
+    onChange={(event) => setValue(event.target.value)}
+  /> {"  "}
 </Fragment>;
 ```
 

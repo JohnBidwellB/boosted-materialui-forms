@@ -178,7 +178,7 @@ const [value, setValue] = useState('');
   /> {"  "}
   <FormField 
     config={{id: 'validation-chileanCellphone', label: 'Validate celphone' }} 
-    validations={{ chileanCellphone: { message: 'Número inválido' } }} 
+    validations={{ chileanPhone: { message: 'Número inválido' } }} 
     value={value} 
     onChange={(event) => setValue(event.target.value)}
   /> {"  "}

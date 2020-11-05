@@ -203,11 +203,13 @@ const [value, setValue] = useState('');
 ```jsx padded 
 import { FormField } from 'boosted-materialui-forms';
 
+<>
 <FormField 
   config={{ label: 'Format Chilean rut', name: 'rut' }} 
   validations={{ chileanRut: {value: true, message: 'RUT inválido' } }} 
   formatters={{ chileanRut: true }}
-/> 
+/> {" "}
+</>
 ```
 
 ### Select

@@ -1,7 +1,7 @@
 import { requiredValidation } from "../validations/required.validation";
 import { lengthValidation } from "../validations/length.validation";
 import { rutValidation } from "../validations/rut.validation";
-import { emailValidation } from "../validations";
+import { chileanPatentValidation, emailValidation } from "../validations";
 import { chileanPhonesValidation } from "../validations/cellphone.validation";
 
 export const checkValidations = (value, validations) => {
@@ -38,6 +38,13 @@ export const checkValidations = (value, validations) => {
 				validationMessage = options.message
 					? options.message
 					: "Invalid phone number";
+				return;
+			case 'chileanPatent':
+				let chileanPatentValid = chileanPatentValidation(value);
+				hasError = hasError || !chileanPatentValid;
+				validationMessage = options.message
+					? options.message
+					: "Invalid patent";
 				return;
 			default:
 				return;

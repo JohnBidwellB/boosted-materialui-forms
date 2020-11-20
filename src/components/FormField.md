@@ -142,7 +142,7 @@ const [value, setValue] = useState('');
   /> {"   "}
   <FormField 
     config={{id: 'validation-required2', label: 'Required validation' }}  
-    validations={{ required: { value: true, message: 'You must enter a value'} }} 
+    validations={{ required: { message: 'You must enter a value'} }} 
     value={value} 
     onChange={(event) => setValue(event.target.value)}
   /> {"   "}

@@ -195,7 +195,7 @@ const Textfield = ({
 					SelectProps={{ multiple: true }}
 				>
 					{options.map((option) => (
-						<MenuItem key={option.value} value={option.value}>
+						<MenuItem key={option.value} value={option.value} disabled={option.disabled}>
 							{option.label}
 						</MenuItem>
 					))}

@@ -228,26 +228,143 @@ import {useState, useEffect} from 'react';
 
 const options = [{ label: 'Option 1', value: 1}, { label: 'Option 2', value: 2}, { label: 'Option 3', value: 3 }]; 
 
-const [selectedValue, setSelectedValue] = useState(null);
-const [multiSelectedValue, setMultiSelectedValue] = useState([ ]);
+const [selectedValue, setSelectedValue] = useState('');
+const [multiSelectedValue, setMultiSelectedValue] = useState([]);
+
+const handleChange = (event) => {
+	event.preventDefault();
+  const { name, value } = event.target;
+	if (name === 'select'){
+    setSelectedValue(value)
+  } else if (name === 'multiselect') {
+    setMultiSelectedValue(value)
+  }
+};
 
 <>
 SelectedValue: {selectedValue}
 <FormField 
   element="select" 
   options={options} 
-  config={{ name: 'select', label: 'select' }} 
+  config={{ name: 'select', label: 'select', fullWidth: true }} 
   value={selectedValue} 
-  change={(newValue) => setSelectedValue(newValue.value)}/>
+  onChange={handleChange}/>
 MultiSelectedValue: {multiSelectedValue}
 <FormField 
   element="multiselect" 
   options={options} 
-  config={{ name: 'multiselect', label: 'multiselect' }} 
+  config={{ name: 'multiselect', label: 'multiselect', fullWidth: true }} 
   value={multiSelectedValue}  
-  change={(newValue) => setMultiSelectedValue(newValue.value)} 
+  onChange={handleChange} 
   validations={{required: true}}/>
 </>
+```
+
+```jsx padded
+import { FormField } from "boosted-materialui-forms";
+import { useState, useEffect } from "react";
+
+const pokemons = [
+	{
+		label: "Grass",
+		value: "Greass",
+		pokemons: [
+			{ label: "Bulbasaur", value: "Bulbasaur" },
+			{ label: "Ivysaur", value: "Ivysaur" },
+			{ label: "Venasaur", value: "Venasaur" },
+		],
+	},
+	{
+		label: "Fire",
+		value: "Fire",
+		pokemons: [
+			{ label: "Charmander", value: "Charmander" },
+			{ label: "Charmeleon", value: "Charmeleon" },
+			{ label: "Charizard", value: "Charizard" },
+		],
+	},
+	{
+		label: "Water",
+		value: "Water",
+		pokemons: [
+			{ label: "Squirtle", value: "Squirtle" },
+			{ label: "Wartortle", value: "Wartortle" },
+			{ label: "Blastoise", value: "Blastoise" },
+		],
+	},
+];
+
+const [data, setData] = useState({
+	type: {
+		config: { name: "type", label: "Type", fullWidth: true },
+		value: "",
+    element: "select",
+    options: []
+	},
+	pokemon: {
+		config: { name: "pokemon", label: "Pokemon", fullWidth: true },
+		value: "",
+    element: "select",
+    options: [{label: 'First select type', value: '', disabled: true}]
+	},
+});
+
+useEffect(() => {
+	setData((prevState) => ({
+		...prevState,
+		type: { ...prevState.type, options: pokemons },
+	}));
+}, []);
+
+useEffect(() => {
+	if (data.type.value) {
+		const selectedType = pokemons.find(
+			(type) => type.value === data.type.value
+		);
+		if (selectedType) {
+			setData((prevState) => ({
+				...prevState,
+				pokemon: {
+					...prevState.pokemon,
+					value: "",
+					options: selectedType.pokemons,
+				},
+			}));
+		}
+	}
+}, [data.type.value]);
+
+const handleChange = (event) => {
+	event.preventDefault();
+  const { name, value } = event.target;
+  console.log(name,value)
+  if (name === 'type') {
+    setData((prevState) => ({
+      ...prevState,
+      type: {
+        ...prevState.type,
+        value,
+      },
+      pokemon: {
+        ...prevState.pokemon,
+        value: ''
+      }
+    }));
+  }
+	setData((prevState) => ({
+		...prevState,
+		[name]: {
+			...prevState[name],
+			value,
+		},
+	}));
+};
+
+<>
+	<FormField {...data.type} onChange={handleChange} />{" "}
+	<FormField {...data.pokemon} onChange={handleChange} />
+</>;
+
 ```
 
 ### Hooks

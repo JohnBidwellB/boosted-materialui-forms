@@ -51,7 +51,7 @@
 		"rollup-plugin-node-resolve": "^5.2.0",
 		"rollup-plugin-peer-deps-external": "^2.2.2",
 		"rollup-plugin-uglify": "^6.0.4",
-		"webpack": "^4.43.0"
+		"webpack": "^5.94.0"
 	},
 	"peerDependencies": {
 		"@material-ui/core": "^4.10.2",
